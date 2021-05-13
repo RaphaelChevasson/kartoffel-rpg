@@ -1,0 +1,19 @@
+                                                          
+FFFFFFFFFFFFFFFFFFFFFF IIIIIIIIII NNNNNNNN        NNNNNNNN
+F::::::::::::::::::::F I::::::::I N:::::::N       N::::::N
+F::::::::::::::::::::F I::::::::I N::::::::N      N::::::N
+FF::::::FFFFFFFFF::::F II::::::II N:::::::::N     N::::::N
+  F:::::F       FFFFFF   I::::I   N::::::::::N    N::::::N
+  F:::::F                I::::I   N:::::::::::N   N::::::N
+  F::::::FFFFFFFFFF      I::::I   N:::::::N::::N  N::::::N
+  F:::::::::::::::F      I::::I   N::::::N N::::N N::::::N
+  F:::::::::::::::F      I::::I   N::::::N  N::::N:::::::N
+  F::::::FFFFFFFFFF      I::::I   N::::::N   N:::::::::::N
+  F:::::F                I::::I   N::::::N    N::::::::::N
+  F:::::F                I::::I   N::::::N     N:::::::::N
+FF:::::::FF            II::::::II N::::::N      N::::::::N
+F::::::::FF            I::::::::I N::::::N       N:::::::N
+F::::::::FF            I::::::::I N::::::N        N::::::N
+FFFFFFFFFFF            IIIIIIIIII NNNNNNNN         NNNNNNN
+                                                          
+                                                          
