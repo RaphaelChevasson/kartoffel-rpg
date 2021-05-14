@@ -368,13 +368,13 @@ def affichage_scinde(Phrases = False, afficher_actions = True, afficher_descript
     Plan_salle = cxy(plan_salle(), 17, 9, 15, 7)
     Plan_donjon = cxy(plan_donjon(), 9, 9, 5, 4)
     b = " ═║╔╗╚╝╦╠╣╩╬" #b = bodrures : caractère utilisé pour les bordures. Attention le premier est un espace (plus facile pour compter)
-    Affichage = b[3] + dimention_phrases_X*b[1] + b[7] + dimention_visuel_X*b[1] + b[4]
+    Affichage = b[3] + dimention_phrases_X*b[1] + b[7] + dimention_visuel_X*b[1] + b[4] + '\n'
     for i in range(dimention_phrases_Y):
-        Affichage += b[2] + Phrases[i] + b[2] + Visuel[i] + b[2]
-    Affichage += b[8] + dimention_X_statut* b[1] + b[7] + 17*b[1] + b[7] + 9*b[1] + b[9] + Visuel[dimention_phrases_Y + 1] + b[2]
+        Affichage += b[2] + Phrases[i] + b[2] + Visuel[i] + b[2] + '\n'
+    Affichage += b[8] + dimention_X_statut* b[1] + b[7] + 17*b[1] + b[7] + 9*b[1] + b[9] + Visuel[dimention_phrases_Y + 1] + b[2] + '\n'
     for i in range(9):
-        Affichage += b[2] + Statut[i] + b[2] + Plan_salle[i] + b[2] + Plan_donjon[i] + b[2] + Visuel[dimention_phrases_Y +1 +i] + b[2]
-    Affichage += b[5] + dimention_X_statut* b[1] + b[10] + 17*b[1] + b[10] + 9*b[1] + b[10] + dimention_visuel_X*b[1] + b[6]
+        Affichage += b[2] + Statut[i] + b[2] + Plan_salle[i] + b[2] + Plan_donjon[i] + b[2] + Visuel[dimention_phrases_Y +1 +i] + b[2] + '\n'
+    Affichage += b[5] + dimention_X_statut* b[1] + b[10] + 17*b[1] + b[10] + 9*b[1] + b[10] + dimention_visuel_X*b[1] + b[6] + '\n'
     effacer_ecran()
     cprint(Affichage, end='')
 

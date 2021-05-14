@@ -73,10 +73,11 @@ var term = new Terminal(terminalOptions);
 term.open(document.getElementById('terminal'));
 term.resize(terminalOptions.cols, terminalOptions.rows)
 
-// Prevent xterm from converting Ctrl+* to ^+*, so we can use Ctrl+C and Ctrl+V
+// Prevent xterm from intercepting Ctrl+*, Alt+* and F1-F12.
+// so now we can use Ctrl+C, Ctrl+V and F5 again!
 term.attachCustomKeyEventHandler(function (e) {
-    if (e.ctrlKey) {
-    return false;
+    if (e.ctrlKey || e.altKey || /^F([1-9]|1[0-2])$/.test(e.code) ) {
+        return false;
     }
 });
 
@@ -85,8 +86,8 @@ var inputString = "";
 //term.write('Hello from \x1B[1;3;31mxterm.js\x1B[0m')
 term.onData(e => {
     switch (e) {
-    case '\r':  // Enter was pressed
-            term.write('\r\n');
+    case '\r':      // Enter was pressed
+        term.write('\r\n');
         if (resolveInput !== undefined)  // if python is waiting for input
         {
             resolveInput(inputString);
@@ -99,9 +100,17 @@ term.onData(e => {
             inputString = inputString.slice(0, -1);
         }
         break;
-    default:  // Print all other characters
-        term.write(e);
-        inputString += e;
+    default:
+        // Tab, Escape, Insert, Suppr, Home, End, PageUp, PageDown or such special key was pressed
+        if (e === '\t' || e.startsWith('\u001b')) {
+            // In my case, I don't want those to be sent to my python program
+            console.log("Ignoring special input key: " + JSON.stringify(e));
+            // TODO: allow the arrows to be used for prompt editing
+        }
+        else {      // Print all other characters
+            term.write(e);
+            inputString += e;
+        }
     }
 });
 
@@ -131,7 +140,7 @@ function print(text) {
     // we need \r\n as, on xterm: \n just move the cursor down ; \r move it left
     // we also don't care if we duplicate a \r
     text = text.replaceAll('\n', '\r\n')
-    // no idea why, skulpt is converting my python '\u000033' to '\u000033', so let's revert it
+    // no idea why, skulpt is converting my python '\u033' to '\u000033', so let's revert it
     // (it's used in ANSI escape codes for writing in color in the terminal)
     text = text.replaceAll('\u000033', '\033')
     term.write(text);
@@ -181,7 +190,6 @@ function executionEnded(module) {
 function colorRed(text) {
     return "\033[1;31m" + text + "\033[0m";
 }
-var er;
 function exceptionOccured(error) {
     var jsError = error.toString().startsWith("ExternalError");
     if (jsError) {
